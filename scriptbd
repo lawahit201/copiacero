@@ -1,0 +1,128 @@
+-- Crear la base de datos
+CREATE DATABASE bolsa_trabajoo;
+
+-- Usar la base de datos
+USE bolsa_trabajoo;
+
+-- Crear la tabla candidato
+CREATE TABLE candidato (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nombre VARCHAR(30),
+  apepat VARCHAR(50),
+  apemat VARCHAR(50),
+  email VARCHAR(30),
+  tel varchar(50),
+  direccion VARCHAR(50),
+  id_user int,
+  FOREIGN KEY (id_user) REFERENCES usuario (id) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+-- Crear la tabla herramientas
+CREATE TABLE herramientas (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nombre VARCHAR(60),
+  versionn varchar(4),
+  lenguajes_programacion VARCHAR(35),
+  frameworks_backend VARCHAR(20),
+  frameworks_fronend VARCHAR(20),
+  servidor VARCHAR(50),
+  control_versionamiento VARCHAR(30),
+  prueba_unitaria VARCHAR(50),
+  ide VARCHAR(50),
+  formato_intercambio VARCHAR(30),
+  gestion_proyecto VARCHAR(50),
+  web VARCHAR(50)
+);
+
+-- Crear la tabla vacante
+CREATE TABLE vacante (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    fecha date,
+    nombre VARCHAR(50),
+    descripcion VARCHAR(350),
+    empleo_uno VARCHAR(100),
+    periodo_empleo_uno date,
+    actividad_empleo_uno VARCHAR(200),
+    empleo_dos VARCHAR(50),
+    periodo_empleo_dos date,
+    actividad_empleo_dos VARCHAR(200),
+    id_herramienta INT,
+    id_candidato INT,
+    FOREIGN KEY (id_herramienta) REFERENCES herramientas (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_candidato) REFERENCES candidato (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Crear la tabla detalle
+CREATE TABLE detalle (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  RFC VARCHAR(13),
+  CURP VARCHAR(18),
+  NSS VARCHAR(11),
+  id_candidato INT,
+  FOREIGN KEY (id_candidato) REFERENCES candidato (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Crear la tabla ciudad
+CREATE TABLE ciudad (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nombre VARCHAR(30),
+  id_candidato INT,
+  FOREIGN KEY (id_candidato) REFERENCES candidato (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Crear la tabla carrera
+CREATE TABLE carrera (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nombre VARCHAR(50)
+);
+
+-- Crear la tabla universidad
+CREATE TABLE universidad (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nombre VARCHAR(60),
+  id_carrera INT,
+  FOREIGN KEY (id_carrera) REFERENCES carrera (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Crear la tabla formacion_educativa
+CREATE TABLE formacion_educativa (
+  titulo VARCHAR(30),
+  periodo_inicio date,
+  periodo_termino date,
+  id_universidad INT,
+  id_candidato INT,
+  FOREIGN KEY (id_universidad) REFERENCES universidad (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (id_candidato) REFERENCES candidato (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Crear la tabla experiencia_laboral
+CREATE TABLE experiencia_laboral (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  empleo_uno VARCHAR(150),
+  periodo_empleo_inicio_uno date,
+  periodo_empleo_fin_uno date,
+  actividad_empleo_uno VARCHAR(150),
+  salario_empleo_uno float(7),
+  empleo_dos VARCHAR(150),
+  periodo_empleo_inicio_dos date,
+  periodo_empleo_fin_dos date,
+  actividad_empleo_dos VARCHAR(150),
+  salario_empleo_dos float(7),
+  id_candidato INT,
+  FOREIGN KEY (id_candidato) REFERENCES candidato (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Crear la tabla usuario
+CREATE TABLE usuario (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  login VARCHAR(15),
+  password VARCHAR(10)
+);
+
+-- Crear la tabla usuario_master
+CREATE TABLE usuario_master (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  login VARCHAR(15),
+  password VARCHAR(10)
+);
