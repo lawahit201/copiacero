@@ -29,7 +29,23 @@
 <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
 <meta name="theme-color" content="#712cf9">
 
+<style>
+    html, body {
+      height: 100%;
+    }
 
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .content {
+      justify-content: center;
+
+      flex: 1;
+    }
+  </style>
     
     
     <!--navar -->
@@ -38,7 +54,12 @@
   <body>
  
   <hr>
-  <header>
+  
+
+  <div class="container">
+    <div class="content">
+      <!-- Aquí va el contenido principal de tu página -->
+      <header>
     <div class="px-3 py-2 text-bg-dark border-bottom">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -81,8 +102,15 @@
     </div>
     
   </header>
-
- 
+    </div>
+    <footer class="mt-auto">
+      <p class="u-small-text u-text u-text-variant u-text-1">Todos los derechos Reservados Copyright © 2012 - 2023&nbsp;</p>
+      <p class="u-small-text u-text u-text-variant u-text-2">
+        <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="https://jsoftpuebla.com">&nbsp;JSoft Group Puebla - MX</a>
+      </p>
+    </footer>
+  </div>
+  
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
